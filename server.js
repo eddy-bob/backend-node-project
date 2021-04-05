@@ -22,6 +22,6 @@ const server = app.listen(
   console.log(`server running at port ${port} in mode ${enviroment} `)
 );
 // close the server if there  is an error and display the error
-process.on("unhandledRejection", (err, promise) => {
+process.on("unhandledRejection", (err) => {
   console.log(`error:${err.message}`), server.close(process.exit(1));
 });
