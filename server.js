@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const morgan = require("morgan");
+const handleError = require("./middleware/error");
 // load dotenv
 dotenv.config({ path: "./config/config.env" });
 
@@ -12,11 +13,14 @@ const bootcamp = require("./routes/bootcamps.js");
 // const logger=require('./middleware/logger')
 // to send back a response wnen a person fires a get request from a front end app to a slash router
 app.use("/api/v1/bootcamps", bootcamp);
-// body parser
-app.use(express.json());
-// set a middle ware so that when ever i make a command,it runs
-connectDB;
 app.use(morgan);
+connectDB();
+app.use(express.json());
+app.use(handleError);
+// body parser
+
+// set a middle ware so that when ever i make a command,it runs
+
 const server = app.listen(
   port,
   console.log(`server running at port ${port} in mode ${enviroment} `)
