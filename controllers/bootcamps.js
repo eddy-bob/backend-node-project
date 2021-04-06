@@ -6,6 +6,7 @@ exports.createbootcamps = async (res, req, next) => {
     res
       .status(201)
       .json({ success: true, data: bootcamp, counts: bootcamps.length });
+    
   } catch (error) {
     // console.log({ Error: error });
     //  res.status(400).json({

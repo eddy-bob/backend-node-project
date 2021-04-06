@@ -12,16 +12,13 @@ const enviroment = process.env.NODE_ENV;
 const app = express();
 const bootcamp = require("./routes/bootcamps.js");
 // const logger=require('./middleware/logger')
-// to send back a response wnen a person fires a get request from a front end app to a slash router
-connectDB();
-app.use(morgan);
 
+app.use(morgan);
+connectDB();
 app.use(express.json());
 app.use("/api/v1/bootcamps", bootcamp);
 app.use(handleError);
-// body parser
 
-// set a middle ware so that when ever i make a command,it runs
 
 const server = app.listen(
   port,
