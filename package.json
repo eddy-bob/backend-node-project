@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "secret": " node secret"
   },
   "author": "eddy madu taye chidi",
   "license": "MIT",
@@ -15,9 +16,9 @@
   "dependencies": {
     "color": "^3.1.3",
     "colors": "^1.4.0",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mogoose": "^0.0.1-security",
     "mongoose": "^5.12.2",
     "morgan": "^1.10.0"
   }

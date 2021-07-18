@@ -7,9 +7,9 @@ const bootcampSchema = new mongoose.Schema({
     unique: [true, "no two bootcamp can have thesame name"],
     trim: true,
     maxlength: [50, "bootcamp can not have more than 50 characters"],
-    slug:String
+    slug: String,
   },
-  
+
   description: {
     type: String,
     required: [true, "please add a discription"],
@@ -17,7 +17,7 @@ const bootcampSchema = new mongoose.Schema({
   },
   website: {
     match: [
-     "javascript - regex - url",
+      "javascript - regex - url",
       "please use a valid URL with http or https",
     ],
   },
@@ -87,7 +87,7 @@ const bootcampSchema = new mongoose.Schema({
       type: Boolean,
       defualt: false,
     },
-    
+
     acceptGi: {
       type: Boolean,
       defualt: false,
@@ -102,4 +102,4 @@ const bootcampSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-module.exports=mongoose.model('bootcamps',bootcampSchema)
+module.exports = mongoose.model("bootcamps", bootcampSchema);

@@ -1,28 +1,33 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+const userRoute = require("./routes/routes");
+// const connectDB = require("./config/db");
 const morgan = require("morgan");
 const colors = require("colors");
 const handleError = require("./middleware/error");
 // load dotenv
-dotenv.config({ path: "./config/config.env" });
 
-const port = process.env.PORT || 5000;
-const enviroment = process.env.NODE_ENV;
 const app = express();
-const bootcamp = require("./routes/bootcamps.js");
+const bootcamp = require("./controllers/bootcamps.js");
 // const logger=require('./middleware/logger')
-
-app.use(morgan);
-connectDB();
+if (process.env.NODE_ENV === "developement") {
+  app.use(morgan("dev"));
+}
+// connectDB();
 app.use(express.json());
-app.use("/api/v1/bootcamps", bootcamp);
-app.use(handleError);
 
+app.use("/api/v1/bootcamps", userRoute);
+// app.use(handleError);
+const { config } = require("dotenv");
+config({ path: ".env" });
+
+const port = process.env.PORT;
+const enviroment = process.env.NODE_ENV;
 
 const server = app.listen(
   port,
-  console.log(`server running at port ${port} in mode ${enviroment} `)
+  console.log(
+    `server running at port ${port} in mode ${enviroment} `.blue.underline
+  )
 );
 // close the server if there  is an error and display the error
 process.on("unhandledRejection", (err) => {
